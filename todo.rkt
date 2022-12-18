@@ -27,11 +27,19 @@
   (for-each (lambda (x) (save-todo-entry x)) (filter predicate todos))
   )
 
+(define (help)
+  (displayln "'--help' shows this.")
+  (displayln "'list' shows todos with id.")
+  (displayln "'check <id>' removes and todo from list.")
+  (displayln "'add <text>' adds a new todo to list.")
+  )
+
 (define (program)
   (match args
     [(list "list") (list-todos)]
     [(list "add" td) (add-todo td)]
     [(list "check" id) (delete-by-id id)]
+    [(list "--help") (help)]
     [else (displayln "no command matched. use --help to see options.")])
   )
 
