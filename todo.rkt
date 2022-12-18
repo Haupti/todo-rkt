@@ -24,7 +24,10 @@
   (define todos (get-saved-todos))
   (define (predicate x) (not (eq? (get-id x) number-id)))
   (clear-todo-memory)
-  (for-each (lambda (x) (save-todo-entry x)) (filter predicate todos))
+  (define filtered-todos (filter predicate todos))
+  (for-each (lambda (x) (save-todo-entry x)) filtered-todos)
+  (cond
+    [(= (length todos) (length filtered-todos)) (displayln "nothing deleted")])
   )
 
 (define (help)
